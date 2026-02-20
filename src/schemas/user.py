@@ -15,10 +15,18 @@ class UserResponse(BaseModel):
     model_config = {"from_attributes": True}
 
 
+class Pagination(BaseModel):
+    page: int
+    limit: int
+    total: int
+    total_pages: int
+
+
 class UserListResponse(BaseModel):
     success: bool
     message: str
     data: List[UserResponse]
+    pagination: Pagination
 
 
 class UserCreate(BaseModel):
@@ -26,6 +34,13 @@ class UserCreate(BaseModel):
     email: str
     password: str
     phone: Optional[str] = None
+
+
+class UpdateUser(BaseModel):
+    name: str
+    email: str
+    phone: Optional[str] = None
+    status: Optional[bool] = None
 
 
 class LoginRequest(BaseModel):
